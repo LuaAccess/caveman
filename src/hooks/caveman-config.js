@@ -189,6 +189,8 @@ function readFlag(flagPath) {
   }
 }
 
+// Hard cap on history file to prevent unbounded growth (~5MB = thousands of sessions).
+const MAX_HISTORY_BYTES = 5 * 1024 * 1024;
 // Symlink-safe append. Same parent-dir + symlink-target rules as safeWriteFlag,
 // but opens with O_APPEND so concurrent writers from different sessions don't
 // clobber each other. Used for the lifetime stats log
@@ -228,7 +230,7 @@ function appendFlag(filePath, line) {
 
     const realPath = path.join(realDir, path.basename(filePath));
     try {
-      if (fs.lstatSync(realPath).isSymbolicLink()) return;
+      if (fs.lstatSync(realPath).size > MAX_HISTORY_BYTES) return;
     } catch (e) {
       if (e.code !== 'ENOENT') return;
     }
@@ -255,6 +257,7 @@ function readHistory(filePath) {
   try {
     const st = fs.lstatSync(filePath);
     if (st.isSymbolicLink() || !st.isFile()) return [];
+    if (st.size > MAX_HISTORY_BYTES) return [];
     const O_NOFOLLOW = typeof fs.constants.O_NOFOLLOW === 'number' ? fs.constants.O_NOFOLLOW : 0;
     const flags = fs.constants.O_RDONLY | O_NOFOLLOW;
     let fd;
