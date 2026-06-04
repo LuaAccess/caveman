@@ -1,15 +1,15 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "caveman",
-  "description": "Ultra-compressed communication mode for Claude Code. Cuts ~75% of tokens while keeping full technical accuracy.",
+  "description": "Ultra-compressed communication mode for Claude Code. Cuts ~65-75% of tokens while keeping full technical accuracy. Personal fork — local only, no network calls.",
   "owner": {
-    "name": "Julius Brussee",
-    "url": "https://github.com/JuliusBrussee"
+    "name": "LuaAccess",
+    "url": "https://github.com/LuaAccess"
   },
   "plugins": [
     {
       "name": "caveman",
-      "description": "Talk like caveman. Cut ~75% tokens. Keep all technical accuracy.",
+      "description": "Talk like caveman. Cut ~65% tokens. Keep all technical accuracy.",
       "source": "./",
       "category": "productivity"
     }
