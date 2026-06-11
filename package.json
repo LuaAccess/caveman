@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "description": "Caveman installer — detects your AI coding agents and installs caveman for each one.",
   "license": "MIT",
-  "author": "Julius Brussee",
-  "homepage": "https://github.com/JuliusBrussee/caveman",
+  "author": "LuaAccess",
+  "homepage": "https://github.com/LuaAccess/caveman",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JuliusBrussee/caveman.git"
+    "url": "git+https://github.com/LuaAccess/caveman.git"
   },
   "bugs": {
-    "url": "https://github.com/JuliusBrussee/caveman/issues"
+    "url": "https://github.com/LuaAccess/caveman/issues"
   },
   "bin": {
     "caveman": "./bin/install.js"
