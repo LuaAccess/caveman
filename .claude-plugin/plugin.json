@@ -1,8 +1,36 @@
 {
+  "name": "caveman",
+  "description": "Ultra-compressed communication mode. Cuts ~75% of tokens while keeping full technical accuracy by speaking like a caveman.",
   "name": "graphify",
   "description": "Codebase knowledge graph for Claude Code. Maps your entire project — code, docs, PDFs, images — into a queryable graph with god nodes, community detection, and architecture visualization. LuaAccess hardened fork of graphify.",
   "author": {
     "name": "LuaAccess",
     "url": "https://github.com/LuaAccess"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/src/hooks/caveman-activate.js\"",
+            "timeout": 5,
+            "statusMessage": "Loading caveman mode..."
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/src/hooks/caveman-mode-tracker.js\"",
+            "timeout": 5,
+            "statusMessage": "Tracking caveman mode..."
+          }
+        ]
+      }
+    ]
   }
 }
